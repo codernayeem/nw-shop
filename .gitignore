@@ -1,0 +1,12 @@
+# python cache
+__pycache__/
+.python
+.py
+.python-version
+
+# vs code settings
+/.vscode
+
+# database
+*.sqlite3
+*.db
