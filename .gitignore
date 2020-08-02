@@ -10,3 +10,6 @@ __pycache__/
 # database
 *.sqlite3
 *.db
+
+# product releted icons
+product_icon/
