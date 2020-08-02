@@ -5,7 +5,7 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-6 text-center card p-4">
-        <form method="post"> {% csrf_token %}
+        <form onsubmit="return check_password()" method="post"> {% csrf_token %}
             <div class="bg-info p-1 rounded mb-3">
                 <h4 class="mb-0 text-black-50 font-weight-normal">Registration Info :</h4>
                 <p class="mb-0 text-black-50" ><small>(Username will be used to login)</small></p>
@@ -40,8 +40,8 @@
                 </div>
                 <input type="password" class="form-control" id="password1" name="password" required  minlength="6" maxlength="32">
             </div>
-            <div class="alert alert-danger alert-dismissible fade show d-none">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <div id="pass_error" class="alert alert-danger alert-dismissible fade show d-none">
+                <button type="button" class="close" onclick="document.getElementById('pass_error').classList.toggle('d-none')">&times;</button>
                 <strong>Error!</strong> Password not matched.
             </div>
             <div class="input-group mb-3">
@@ -102,5 +102,15 @@
         </form>
     </div>
 </div>
+
+<script>
+    function check_password(){
+        if (document.getElementById('password1').value == document.getElementById('password2').value){
+            return true;
+        }
+        document.getElementById('pass_error').classList.toggle('d-none');
+        return false;
+    }
+</script>
 
 {% endblock %}
