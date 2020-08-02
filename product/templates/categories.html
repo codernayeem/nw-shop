@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block Title %}Categories{% endblock %}
+{% block ActiveNav %}nav-categories{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    {% for i in categories %} {% load static %}
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+        <div class="card shadow" >
+            <img class="card-img-top" src="{% static i.icon_url %}" alt=" [{{ i.name }}]">
+            <div class="card-body">
+                <h4 class="card-title">{{ i.name }}</h4>
+                <p class="card-text">{{ i.description }}</p>
+                <a href="#" class="btn btn-primary {% if i.active == 0%}disabled{% endif %}">See More</a>
+            </div>
+        </div>
+        <br />
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
