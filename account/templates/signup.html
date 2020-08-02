@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block Title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-6 text-center card p-4">
+        <form method="post"> {% csrf_token %}
+            <div class="bg-info p-1 rounded mb-3">
+                <h4 class="mb-0 text-black-50 font-weight-normal">Registration Info :</h4>
+                <p class="mb-0 text-black-50" ><small>(Username will be used to login)</small></p>
+            </div>
+            {% if signup_error %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error!</strong> {{ signup_error }}
+            </div>
+            {% endif %}
+            {% if errorUsername %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error!</strong> {{ errorUsername }}
+            </div>
+            {% endif %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Username</span>
+                </div>
+                <input type="text" class="form-control" value="{{ defaultUsername }}" id="username" name="username" required minlength="3" maxlength="20">
+            </div>
+            {% if errorPassword %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error!</strong> {{ errorPassword }}
+            </div>
+            {% endif %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Password</span>
+                </div>
+                <input type="password" class="form-control" id="password1" name="password" required  minlength="6" maxlength="32">
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show d-none">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error!</strong> Password not matched.
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Confirm Password</span>
+                </div>
+                <input type="password" class="form-control" id="password2" required  minlength="6" maxlength="32">
+            </div>
+            <div class="bg-info p-1 rounded mb-3">
+                <h4 class="mb-0 text-black-50 font-weight-normal">Personal Info :</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {% if errorFirst_name %}
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Error!</strong> {{ errorFirst_name }}
+                    </div>
+                    {% endif %}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">First Name</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ defaultFirst_name }}" id="first_name" name="first_name" required minlength="2" maxlength="32">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    {% if errorLast_name %}
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Error!</strong> {{ errorLast_name }}
+                    </div>
+                    {% endif %}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Last Name</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ defaultLast_name }}" id="last_name" name="last_name" required minlength="2" maxlength="20">
+                    </div>
+                </div>
+                <div class="col-12">
+                    {% if errorEmail %}
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Error!</strong> {{ errorEmail }}
+                    </div>
+                    {% endif %}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Email</span>
+                        </div>
+                        <input type="email" class="form-control" value="{{ defaultEmail }}" id="email" name="email" required>
+                    </div>
+                </div>
+            </div>
+            <button class="card-link btn btn-primary mt-1" type="submit">Sign Up</button>
+            <p class="mb-0 mt-3">Already have an account? <a href="{% url 'login_view' %}" class="font-weight-semibold">Login</a></p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
