@@ -5,18 +5,19 @@
 
 {% block content %}
 
-<div class="card bg-light shadow">
-    <div class="card-header text-primary"><h4>Login</h4></div>
-    <div class="card-body">
+<div class="row justify-content-center">
+    <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 text-center card p-4">
+        <h4 class="mb-4">LOGIN</h4>
         {% if login_error %}
         <div class="alert alert-danger alert-dismissible fade show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{ login_error }}
         </div>
         {% endif %}
+
         <form action="{% url 'login_view' %}" method="POST"> {% csrf_token %}
             <div class="row">
-                <div class="col-md-6 col-lg-5 col-xl-5">
+                <div class="col-12">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">User name</span>
@@ -24,7 +25,7 @@
                         <input type="text" class="form-control" value="{% if login_user %}{{ login_user }}{% endif %}" id="username" name="username" required>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-5 col-xl-5">
+                <div class="col-12">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Password</span>
@@ -32,11 +33,13 @@
                         <input type="password" class="form-control" id="password" name="password"  maxlength="32" required>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                <div class="col-12">
                     <button class="card-link btn btn-primary" type="submit">Login</button>
                 </div>
             </div>
         </form>
+        
     </div>
 </div>
+
 {% endblock %}
