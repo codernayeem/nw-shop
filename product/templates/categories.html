@@ -12,7 +12,7 @@
             <div class="card-body">
                 <h4 class="card-title">{{ i.name }}</h4>
                 <p class="card-text">{{ i.description }}</p>
-                <a href="#" class="btn btn-primary {% if i.active == 0%}disabled{% endif %}">See More</a>
+                <a href="{% url 'category_view' category=i.name %}" class="btn btn-primary {% if i.active == 0%}disabled{% endif %}">See More</a>
             </div>
         </div>
         <br />
