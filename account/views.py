@@ -53,15 +53,19 @@ def login_view(request):
     else:
         login_error = request.session.get('login_error')
         login_user = request.session.get('login_user')
+        signup_info = request.session.get('signup_info')
 
         if login_error:
             request.session.pop('login_error')
         if login_user:
             request.session.pop('login_user')
+        if signup_info:
+            request.session.pop('signup_info')
 
         context = {
             'login_error' : login_error,
             'login_user' : login_user,
+            'signup_info' : signup_info,
         }
         
         return render(request, 'login.html', context)
