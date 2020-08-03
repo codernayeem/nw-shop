@@ -19,3 +19,16 @@ def category_view(request, category):
         return render(request, 'products.html', {'category': category, 'products': products})
     else:
         return HttpResponseNotFound()
+
+
+def product_details_view(request, product_id):
+    try:
+        product = Product.objects.get(id=product_id)
+    except:
+        product = None
+    if product:
+        c = {'product': product}
+    else:
+        c = {'errorId': True}
+
+    return render(request, 'product_details.html', c)
