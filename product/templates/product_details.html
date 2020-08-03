@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block Title %} {{product.name}} {% endblock %}
+
+{% block content %}
+
+{% if errorId %}
+    <h5>Invalid product.</h5>
+    <p>Sorry, your product id does not match with any product. You are looking for a product that does not exists.</p>
+{% else %}
+<div class="row p-2">
+    <div class="col-6 col-md-4 col-lg-3">{% load static %}
+        <img class="card-img-top img-fluid img-thumbnail" src="{% static product.icon_url %}" alt=" [{{ product.name }}]">
+    </div>
+    <div class="col-6 col-md-8 col-lg-3">
+        <br>
+        <h3 class="card-text ">{{ product.name }}</h3>
+        <p class="card-text m-0 mt-1"><span class="font-weight-semibold">Price : </span>
+        {% if product.unit_system == 'kg' %} {{ product.price_per_kg }} tk/kg
+        {% elif product.unit_system == 'item' %} {{ product.price_per_item }} tk/item
+        {% elif product.unit_system == 'both' %} {{ product.price_per_kg }} tk/kg </p> <p class="card-text" style="margin-top: -10px;"><strong>Price : </strong> {{ product.price_per_item }} tk/item
+        {% endif %}
+        </p>
+        <a class="btn btn-primary mt-3 " href="#">Add to Cart</a>
+    </div>
+    <div class="col-12 col-lg-6">
+        <br>
+        <p class="card-text"><span class="font-weight-semibold">Description : </span>{{ product.description }}</p>
+    </div>
+</div>
+<br>
+{% endif %}
+
+{% endblock %}
