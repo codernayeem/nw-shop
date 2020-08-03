@@ -15,7 +15,7 @@
                 {% elif i.unit_system == 'item' %} {{ i.price_per_item }} tk/item
                 {% elif i.unit_system == 'both' %} {{ i.price_per_kg }} tk/kg and {{ i.price_per_item }} tk/item {% endif %}
                 </p>
-                <a class="btn btn-primary" href="#">Details</a>
+                <a class="btn btn-primary" href="{% url 'product_details_view' product_id=i.id %}">Details</a>
             </div>
         </div>
         <br />
