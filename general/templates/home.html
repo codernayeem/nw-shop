@@ -4,9 +4,25 @@
 {% block ActiveNav %}nav-home{% endblock %}
 
 {% block content %}
-	<div class="card bg-light shadow p-2">
-		<h4>Welcome here</h4>
-		<p>Happy Shopping</p>
+	<div class="px-2">
+		<h4>Our Best Products</h4>
 	</div>
+	<div id="products" class="p-2">
+
+	</div>
+
+	<script>
+$(document).ready(function(){
+	var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("products").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "{% url 'random_products_view' %}", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send('');
+});
+	</script>
 {% endblock content %}
 
